@@ -1,0 +1,69 @@
+frisson: "0.1"
+title: Evening Set
+creator: cumquat
+seed: evening-set-demo
+
+defaults:
+  mix:
+    crossfade_ms: 4000
+    normalize: true
+
+tracks:
+  intro_theme:
+    title: Opening Theme
+    creator: Artist A
+    locations:
+      - file:///music/intro-theme.flac
+    duration_ms: 92000
+
+  track_a:
+    title: Track A
+    creator: Artist B
+    locations:
+      - file:///music/track-a.flac
+    duration_ms: 241000
+
+  track_b:
+    title: Track B
+    creator: Artist C
+    locations:
+      - file:///music/track-b.flac
+    duration_ms: 198000
+
+  outro_theme:
+    title: Outro Theme
+    creator: Artist D
+    locations:
+      - file:///music/outro-theme.flac
+    duration_ms: 87000
+
+sections:
+  intro:
+    mode: sequence
+    items:
+      - track: intro_theme
+    transition_out:
+      type: crossfade
+      duration_ms: 6000
+
+  main:
+    mode: shuffle
+    selection:
+      count: 1
+      without_replacement: true
+    mix:
+      crossfade_ms: 8000
+      gain_db: -1.5
+    items:
+      - track: track_a
+      - track: track_b
+
+  outro:
+    mode: sequence
+    items:
+      - track: outro_theme
+
+flow:
+  - section: intro
+  - section: main
+  - section: outro

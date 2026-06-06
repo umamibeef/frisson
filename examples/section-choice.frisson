@@ -1,0 +1,70 @@
+frisson: "0.1"
+title: Section Choice Demo
+seed: section-choice-demo
+
+tracks:
+  station_id:
+    title: Station ID
+    locations:
+      - file:///music/station-id.flac
+
+  calm_1:
+    title: Calm Track 1
+    locations:
+      - file:///music/calm-1.flac
+
+  calm_2:
+    title: Calm Track 2
+    locations:
+      - file:///music/calm-2.flac
+
+  energy_1:
+    title: Energy Track 1
+    locations:
+      - file:///music/energy-1.flac
+
+  energy_2:
+    title: Energy Track 2
+    locations:
+      - file:///music/energy-2.flac
+
+  closer:
+    title: Closer
+    locations:
+      - file:///music/closer.flac
+
+sections:
+  intro:
+    mode: sequence
+    items:
+      - track: station_id
+
+  calm_block:
+    mode: shuffle
+    items:
+      - track: calm_1
+      - track: calm_2
+
+  energy_block:
+    mode: shuffle
+    items:
+      - track: energy_1
+      - track: energy_2
+
+  mood:
+    mode: weighted_choice
+    items:
+      - section: calm_block
+        weight: 3
+      - section: energy_block
+        weight: 1
+
+  outro:
+    mode: sequence
+    items:
+      - track: closer
+
+flow:
+  - section: intro
+  - section: mood
+  - section: outro
